@@ -10,7 +10,7 @@ export async function SlideBand() {
   const rows = data.slice(0, 10);
   return (
     <div className='container'>
-      <div className='flex justify-evenly py-6'>
+      <div className='flex justify-evenly py-6 '>
       {rows.map((item: any, index: any) => {
         return (
           <div className='flex flex-col justify-center items-center' key={item.name + index}>
