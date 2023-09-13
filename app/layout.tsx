@@ -1,7 +1,8 @@
+import '@/style/globals.css'
+import Footer from '@/components/Footer'
 import { Navbar } from '@/components/Navbar'
 import { ThemeProvider } from '@/components/theme-provider'
 import { cn } from '@/lib/utils'
-import '@/style/globals.css'
 import type { Metadata } from 'next'
 import { Righteous } from 'next/font/google'
 
@@ -23,13 +24,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn('min-h-screen', righteous.variable)}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="light" >
 
           <Navbar />
           <main className='flex-1'>
             {children}
           </main>
-
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
