@@ -25,7 +25,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={cn('min-h-screen', righteous.variable)}>
         <ThemeProvider attribute="class" defaultTheme="light" >
-
           <Navbar />
           <main className='flex-1'>
             {children}
