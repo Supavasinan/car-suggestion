@@ -2,43 +2,48 @@
 import React from 'react'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Button } from "@/components/ui/button"
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, } from "@/components/ui/command"
-import { Popover, PopoverContent, PopoverTrigger, } from "@/components/ui/popover"
-import { z } from 'zod'
 import { createSuggestionSchema } from '@/validators/suggestion'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Input } from '@/components/ui/input'
-import { Country, ICountry } from 'country-state-city'
-import { Check, ChevronsUpDown, Loader2 } from 'lucide-react'
-import { cn } from '@/lib/utils'
-type Props = {}
+import { InputCreateSuggestionProp } from '@/types'
+import { Loader2 } from 'lucide-react'
+import { SearchSalary } from '@/components/SearchSalary'
+import { SearchManufacturer } from '@/components/SearchManufacturer'
+import { SearchCountry } from '@/components/SearchCountry'
+import { SearchCarType } from '@/components/SearchCarType'
 
-type Input = z.infer<typeof createSuggestionSchema>
-
-export function CreateSuggestionForm(props: Props) {
-    const [CountryData, setCountryData] = React.useState<ICountry[]>([])
+export function CreateSuggestionForm() {
     const [Loading, setLoading] = React.useState<boolean>(false)
 
-    React.useEffect(() => {
-        if (CountryData.length > 0) return
-        let country = Country.getAllCountries()
-        setCountryData(country)
-    }, [])
 
-    const form = useForm<Input>({
-        resolver: zodResolver(createSuggestionSchema),
+    const form = useForm<InputCreateSuggestionProp>({
+        resolver: zodResolver(createSuggestionSchema as any),
         defaultValues: {
             country: "",
-            brand: "",
+            manufacturer: "",
             carType: "",
             salary: ""
         }
     })
-    function onSubmit(data: Input) {
+
+    async function onSubmit(data: InputCreateSuggestionProp) {
         setLoading(true)
-        alert(JSON.stringify(data, null, 4))
+        try {
+            const res = await fetch("/api/gpt-suggestion", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            console.log(res)
+        } catch (error) {
+            console.log(error)
+        } finally {
+            setLoading(false)
+        }
     }
+
     return (
 
         <Form {...form} >
@@ -50,66 +55,8 @@ export function CreateSuggestionForm(props: Props) {
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel>Country</FormLabel>
-                                <Popover>
-                                    <PopoverTrigger asChild>
-                                        <FormControl>
-                                            <Button
-                                                variant="outline"
-                                                role="combobox"
-                                                className={cn(
-                                                    "w-full justify-between",
-                                                    !field.value && "text-muted-foreground"
-                                                )}
-                                            >
-                                                {field.value
-                                                    ? CountryData.find(
-                                                        (country) => country.name === field.value
-                                                    )?.name
-                                                    : "Select language"}
-                                                <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                                            </Button>
-                                        </FormControl>
-                                    </PopoverTrigger>
-                                    <PopoverContent className="w-[400px] p-0 "  >
-                                        <Command>
-                                            <CommandInput placeholder="Search framework..." />
-                                            <CommandEmpty>No country found.</CommandEmpty>
-                                            <CommandGroup>
-                                                {CountryData.map((country, index) => (
-                                                    <CommandItem
-                                                        value={country.name}
-                                                        key={index}
-                                                        onSelect={() => {
-                                                            form.setValue("country", country.name)
-                                                        }}
-                                                    >
-                                                        <Check
-                                                            className={cn(
-                                                                "mr-2 h-4 w-4",
-                                                                country.name === field.value
-                                                                    ? "opacity-100"
-                                                                    : "opacity-0"
-                                                            )}
-                                                        />
-                                                        {country.name}
-                                                    </CommandItem>
-                                                ))}
-                                            </CommandGroup>
-                                        </Command>
-                                    </PopoverContent>
-                                </Popover>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="brand"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Brand</FormLabel>
                                 <FormControl>
-                                    <Input  {...field} type='text' placeholder='Please select your brand' />
+                                    <SearchCountry country={field.value} setCountry={field.onChange} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -117,16 +64,12 @@ export function CreateSuggestionForm(props: Props) {
                     />
                     <FormField
                         control={form.control}
-                        name="salary"
+                        name="manufacturer"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Salary</FormLabel>
+                                <FormLabel>Manufacturer</FormLabel>
                                 <FormControl>
-                                    <Input
-                                        {...field}
-                                        type='number'
-                                        placeholder='fill your current salary'
-                                    />
+                                    <SearchManufacturer manufacturer={field.value} setManuFacturer={field.onChange} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -139,15 +82,26 @@ export function CreateSuggestionForm(props: Props) {
                             <FormItem>
                                 <FormLabel>Car type</FormLabel>
                                 <FormControl>
-                                    <Input  {...field}
-                                        type='text'
-                                        placeholder='fill your car type'
-                                    />
+                                    <SearchCarType carType={field.value} setCarTypes={field.onChange} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
                         )}
                     />
+                    <FormField
+                        control={form.control}
+                        name="salary"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Salary per month</FormLabel>
+                                <FormControl>
+                                    <SearchSalary salary={field.value} setSalary={field.onChange} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+
                 </div>
                 <div className='mt-4 flex items-center justify-end'>
                     <Button type="submit" disabled={Loading}>{Loading ? <Loader2 className='w-4 h-4 animate-spin	' /> : "Submit"}</Button>

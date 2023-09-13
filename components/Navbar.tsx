@@ -5,6 +5,7 @@ import { buttonVariants } from "@/components/ui/button"
 import { cn } from '@/lib/utils'
 import { SocialList } from '@/components/SocialList'
 import { motion } from "framer-motion"
+import { ModeToggle } from './ui/mode-toggle'
 export function Navbar() {
     return (
         <div className='supports-backdrop-blur:bg-background/60 sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur'>
@@ -15,7 +16,8 @@ export function Navbar() {
                     </motion.div>
                 </Link>
                 <p className='font-righteous'>Hi! There, Welcome to our website! </p>
-                <SocialList />
+                {/* <SocialList /> */}
+                <ModeToggle/>
             </div>
         </div>
     )

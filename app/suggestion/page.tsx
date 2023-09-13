@@ -1,7 +1,7 @@
 import React from 'react'
-import { CreateSuggestionForm } from '@/components/createSuggestionForm'
 import Image from 'next/image'
 import { Metadata } from 'next'
+import { CreateSuggestionForm } from '@/components/CreateSuggestionForm'
 
 export const metadata: Metadata = {
   title: 'Information',
