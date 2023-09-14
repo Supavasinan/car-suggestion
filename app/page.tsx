@@ -1,15 +1,17 @@
-import { HeroPage } from "@/components/HeroPage";
+import { Hero } from "@/components/Hero";
+import { SocialList } from "@/components/SocialList";
 import { Suggestion } from "@/components/Suggestion";
-import { CarProps, FilterProps } from "@/types";
+import { FilterProps } from "@/types";
 type Prop = {
     searchParams: FilterProps
 }
-export default async function Home({searchParams}:Prop) {
-   
+export default async function Home({ searchParams }: Prop) {
+
     return (
         <div>
-            <HeroPage />
-            <Suggestion  searchParams={searchParams}/>
+            <Hero />
+            <SocialList />
+            <Suggestion searchParams={searchParams} />
         </div>
     )
 }

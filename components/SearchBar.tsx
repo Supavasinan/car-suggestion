@@ -47,10 +47,10 @@ export function SearchBar() {
         router.push(newPathname);
     };
     return (
-        <form onSubmit={handleSearch} className='mt-6 flex gap-5 items-center justify-start'>
+        <form onSubmit={handleSearch} className='mt-6 gap-5 grid grid-flow-row sm:grid-flow-col w-fit '>
             <SearchManufacturer manufacturer={manufacturer} setManuFacturer={setManuFacturer} />
             <SearchCarModel carModel={model} setCarModel={setModel} />
-            <Button variant={"default"} type='submit'><Search className='w-4 h-4' /></Button>
+            <Button variant={"default"} className='w-fit' type='submit'><Search className='w-4 h-4' /></Button>
         </form>
     )
 }

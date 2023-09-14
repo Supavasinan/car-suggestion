@@ -25,8 +25,8 @@ export function SearchManufacturer({ manufacturer, setManuFacturer }: SearchManu
                             !manufacturer && "text-muted-foreground"
                         )}
                     >
-                        {!manufacturer && <SiLamborghini/>}
-                        
+                        <SiLamborghini />
+
                         {manufacturer
                             ? manufacturers.find(
                                 (item) => item === manufacturer
@@ -36,11 +36,11 @@ export function SearchManufacturer({ manufacturer, setManuFacturer }: SearchManu
                     </Button>
 
                 </PopoverTrigger>
-                <PopoverContent  className="w-[400px] p-0 ">
+                <PopoverContent className="w-[400px] p-0 ">
                     <Command>
                         <CommandInput placeholder="Search manufacturer..." />
                         <CommandEmpty>No manufacturer found.</CommandEmpty>
-                        <CommandGroup  className='overflow-y-scroll max-h-[300px]'>
+                        <CommandGroup className='overflow-y-scroll max-h-[300px]'>
                             {manufacturers.map((item) => {
                                 return (
 
