@@ -1,7 +1,9 @@
-import Image from 'next/image'
 import React from 'react'
-import { SuggestionButton } from './SuggestionButton'
+import Image from 'next/image'
+import { SuggestionButton } from '@/components/SuggestionButton'
 import { Animate } from '@/context/Animate'
+
+
 export function Hero() {
     return (
         <section className='container'>

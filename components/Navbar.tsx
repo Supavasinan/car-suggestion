@@ -3,9 +3,9 @@ import Link from 'next/link'
 import React from 'react'
 import { buttonVariants } from "@/components/ui/button"
 import { cn } from '@/lib/utils'
-import { SocialList } from '@/components/SocialList'
 import { motion } from "framer-motion"
 import { ModeToggle } from './ui/mode-toggle'
+
 export function Navbar() {
     return (
         <div className='supports-backdrop-blur:bg-background/60 sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur'>

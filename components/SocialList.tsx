@@ -36,10 +36,14 @@ export function SocialList() {
             key={index}
 
           >
-            <Link href={item.href} target='_blank' className='flex  flex-col items-center gap-2 justify-center'>
-              {item.icon}
-              <h1 className='text-muted-foreground'>{item.name}</h1>
-            </Link>
+
+            <div className='flex items-center gap-2 justify-center'>
+              <Link href={item.href} target='_blank' className='flex flex-col items-center gap-2 justify-center'>
+                {item.icon}
+                <h1 className='text-muted-foreground'>{item.name}</h1>
+              </Link>
+            </div>
+
           </Animate>
 
         ))}
