@@ -4,11 +4,12 @@ import { Button } from "@/components/ui/button"
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, } from "@/components/ui/command"
 import { cn } from '@/lib/utils'
 import { Check, ChevronsUpDown } from 'lucide-react'
-import { CarTypeProp } from '@/types'
-import { CarTypes } from '@/constants'
+import { CarModelProp } from '@/types'
+import { CarModels } from '@/constants'
+import { BsFillCarFrontFill } from 'react-icons/bs';
 
 
-export function SearchCarType({ carType, setCarTypes }: CarTypeProp) {
+export function SearchCarModel({ carModel, setCarModel }: CarModelProp) {
     return (
         <div>
             <Popover>
@@ -17,18 +18,16 @@ export function SearchCarType({ carType, setCarTypes }: CarTypeProp) {
                         variant="outline"
                         role="combobox"
                         className={cn(
-                            "w-full justify-between",
-                            !carType && "text-muted-foreground"
+                            "flex gap-3 items-center justify-center",
+                            !carModel && "text-muted-foreground"
                         )}
                     >
-
-                        {carType
-                            ? CarTypes.find(
-                                (item) => item === carType
+                        <BsFillCarFrontFill />
+                        {carModel
+                            ? CarModels.find(
+                                (item) => item === carModel
                             )
-                            : "Select Manufacturer"}
-                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-
+                            : "Select Car Model"}
                     </Button>
 
                 </PopoverTrigger>
@@ -37,19 +36,19 @@ export function SearchCarType({ carType, setCarTypes }: CarTypeProp) {
                         <CommandInput placeholder="Search manufacturer..." />
                         <CommandEmpty>No manufacturer found.</CommandEmpty>
                         <CommandGroup className='overflow-y-scroll max-h-[300px]'>
-                            {CarTypes.map((item) => {
+                            {CarModels.map((item) => {
                                 return (
                                     <CommandItem
                                         value={item}
                                         key={item}
                                         onSelect={() => {
-                                            setCarTypes(item)
+                                            setCarModel(item)
                                         }}
                                     >
                                         <Check
                                             className={cn(
                                                 "mr-2 h-4 w-4",
-                                                item === carType
+                                                item === carModel
                                                     ? "opacity-100"
                                                     : "opacity-0"
                                             )}

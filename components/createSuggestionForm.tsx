@@ -10,7 +10,7 @@ import { Loader2 } from 'lucide-react'
 import { SearchSalary } from '@/components/SearchSalary'
 import { SearchManufacturer } from '@/components/SearchManufacturer'
 import { SearchCountry } from '@/components/SearchCountry'
-import { SearchCarType } from '@/components/SearchCarType'
+import { SearchCarType } from '@/components/SearchCarModel'
 
 export function CreateSuggestionForm() {
     const [Loading, setLoading] = React.useState<boolean>(false)

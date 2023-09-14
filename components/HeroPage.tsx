@@ -1,11 +1,10 @@
 import Image from 'next/image'
 import React from 'react'
 import { GetSuggestionButton } from './GetSuggestionButton'
-import { CarModal } from './CarModal'
 
-export function Banner() {
+export function HeroPage() {
     return (
-        <section className='container'>
+        <section className='container h-screen'>
             <div className='md:py-20 py-10 flex-col flex md:flex-row justify-between items-start'>
                 <div className='md:text-5xl text-2xl font-righteous flex flex-col gap-4'>
 

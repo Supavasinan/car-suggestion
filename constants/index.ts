@@ -45,7 +45,7 @@ export const manufacturers = [
     "Lucid"
 ];
 
-export const CarTypes = [
+export const CarModels = [
     "Sedan",
     "SUV (Sport Utility Vehicle)",
     "Coupe",

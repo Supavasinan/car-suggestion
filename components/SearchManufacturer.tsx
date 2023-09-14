@@ -6,40 +6,44 @@ import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, } from 
 import { manufacturers } from '@/constants'
 import { cn } from '@/lib/utils'
 import { Check, ChevronsUpDown } from 'lucide-react'
+import { SiLamborghini } from 'react-icons/si';
 
 
 export function SearchManufacturer({ manufacturer, setManuFacturer }: SearchManuFacturerProps) {
+
 
     return (
         <div>
             <Popover>
                 <PopoverTrigger asChild>
+
                     <Button
                         variant="outline"
                         role="combobox"
                         className={cn(
-                            "w-full justify-between",
+                            "flex gap-3 items-center justify-center",
                             !manufacturer && "text-muted-foreground"
                         )}
                     >
-
+                        {!manufacturer && <SiLamborghini/>}
+                        
                         {manufacturer
                             ? manufacturers.find(
                                 (item) => item === manufacturer
                             )
                             : "Select Manufacturer"}
-                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
 
                     </Button>
 
                 </PopoverTrigger>
-                <PopoverContent className="w-[400px] p-0 ">
+                <PopoverContent  className="w-[400px] p-0 ">
                     <Command>
                         <CommandInput placeholder="Search manufacturer..." />
                         <CommandEmpty>No manufacturer found.</CommandEmpty>
-                        <CommandGroup className='overflow-y-scroll max-h-[300px]'>
+                        <CommandGroup  className='overflow-y-scroll max-h-[300px]'>
                             {manufacturers.map((item) => {
                                 return (
+
                                     <CommandItem
                                         value={item}
                                         key={item}
@@ -47,6 +51,7 @@ export function SearchManufacturer({ manufacturer, setManuFacturer }: SearchManu
                                             setManuFacturer(item)
                                         }}
                                     >
+
                                         <Check
                                             className={cn(
                                                 "mr-2 h-4 w-4",
