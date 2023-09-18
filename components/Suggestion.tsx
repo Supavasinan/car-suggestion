@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { SearchBar } from '@/components/SearchBar'
-import { fetchCars } from "@/lib/utils";
+import { fetchCars, generateCarImageUrl } from "@/lib/utils";
 import { FilterProps } from '@/types';
 import { CarCard } from '@/components/CarCard';
 import Image from 'next/image';
@@ -11,46 +11,32 @@ import Image from 'next/image';
 export async function Suggestion({ searchParams }: { searchParams: FilterProps }) {
     const allCars = await fetchCars({
         manufacturer: searchParams.manufacturer || '',
-        year: searchParams.year || 2022,
+        year: searchParams.year || 2023,
         fuel: searchParams.fuel || '',
-        limit: searchParams.limit || 1,
+        limit: searchParams.limit || 20,
         model: searchParams.model || ''
     })
 
     const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
+    console.log(isDataEmpty, "isDataEmpty")
     return (
         <div className='container'>
             <div className='py-6'>
                 <p className='text-2xl font-bold'>Car Catalogue</p>
                 <SearchBar />
-                {isDataEmpty ? (
+
+                {!isDataEmpty ? (
                     <section className='w-full'>
                         <div className='grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 w-full gap-8 pt-14'>
-                            {[0, 1, 2, 4, 6].map((item) => (
-                                <div className='p-6 '>
-                                    <h1 className='font-righteous text-2xl'>Chevrolet trax fwd</h1>
-                                    <p className='flex mt-6 text-[32px] leading-[38px] font-extrabold'>
-                                        <span className='self-start text-[14px] leading-[17px] font-semibold'>$</span>
-                                        <span>14</span>
-                                        <span className='self-end text-[14px] leading-[17px] font-medium'>/day</span>
-                                    </p>
-                                    <div className='relative w-full h-40 my-3 object-contain'>
-                                        <Image src="/images/toyota.png" alt='car' fill priority  className='object-contain'/>
-                                    </div>
-                                    <div>fwd</div>
-                                    <div>2022</div>
-
-                                </div>
+                            {allCars?.map((car) => (
+                                <CarCard car={car} />
                             ))}
-
                         </div>
-
-
                     </section>
                 ) : (
                     <div>
                         <h2 >Oops, no results</h2>
-                        {/* <p>{allCars?.message}</p> */}
+                        <p>{allCars?.message}</p>
                     </div>
                 )}
             </div>
