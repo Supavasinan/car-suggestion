@@ -18,7 +18,6 @@ export async function Suggestion({ searchParams }: { searchParams: FilterProps }
     })
 
     const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
-    console.log(isDataEmpty, "isDataEmpty")
     return (
         <div className='container'>
             <div className='py-6'>
