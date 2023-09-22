@@ -19,7 +19,7 @@ export async function Suggestion({ searchParams }: { searchParams: FilterProps }
 
     const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
     return (
-        <div className='container'>
+        <div className='container' id='Suggestion'>
             <div className='pt-6 pb-10'>
                 <p className='text-2xl font-bold'>Car Catalogue</p>
                 <SearchBar />

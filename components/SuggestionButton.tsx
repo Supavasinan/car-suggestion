@@ -9,7 +9,7 @@ import { motion } from 'framer-motion'
 export function SuggestionButton() {
   return (
     <div className='flex items-center justify-start gap-3'>
-      <Link href="/" className={cn(buttonVariants({ variant: "default" }))}>Get Suggestion</Link>
+      <Link href="#Suggestion" className={cn(buttonVariants({ variant: "default" }))}>Get Suggestion</Link>
       <motion.div
         animate={{ scale: [0, 1, 0.5, 1] }}
         transition={{ times: [0, 0.1, 0.9, 1], repeat: Infinity, duration: 1 }}
