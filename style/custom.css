@@ -1,0 +1,14 @@
+
+    
+.c-scroll::-webkit-scrollbar {
+    @apply rounded-xl w-1;
+}
+
+.c-scroll::-webkit-scrollbar-track {
+    @apply rounded-xl ;
+    
+}
+
+.c-scroll::-webkit-scrollbar-thumb {
+    @apply bg-foreground rounded-xl;
+}

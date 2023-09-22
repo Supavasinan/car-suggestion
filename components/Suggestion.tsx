@@ -1,10 +1,10 @@
 
 import React from 'react'
 import { SearchBar } from '@/components/SearchBar'
-import { fetchCars, generateCarImageUrl } from "@/lib/utils";
+import { fetchCars } from "@/lib/utils";
 import { FilterProps } from '@/types';
 import { CarCard } from '@/components/CarCard';
-import Image from 'next/image';
+import { ShowMore } from '@/components/ShowMore'
 
 
 
@@ -13,14 +13,14 @@ export async function Suggestion({ searchParams }: { searchParams: FilterProps }
         manufacturer: searchParams.manufacturer || '',
         year: searchParams.year || 2023,
         fuel: searchParams.fuel || '',
-        limit: searchParams.limit || 20,
+        limit: searchParams.limit || 10,
         model: searchParams.model || ''
     })
 
     const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
     return (
         <div className='container'>
-            <div className='py-6'>
+            <div className='pt-6 pb-10'>
                 <p className='text-2xl font-bold'>Car Catalogue</p>
                 <SearchBar />
 
@@ -31,13 +31,19 @@ export async function Suggestion({ searchParams }: { searchParams: FilterProps }
                                 <CarCard car={car} />
                             ))}
                         </div>
+                        <ShowMore
+                            pageNumber={(searchParams.limit || 10) / 10}
+                            isNext={(searchParams.limit || 10) > allCars.length}
+                        />
                     </section>
+
                 ) : (
                     <div>
-                        <h2 >Oops, no results</h2>
+                        <h2 className='py-6'>Oops, no results</h2>
                         <p>{allCars?.message}</p>
                     </div>
                 )}
+
             </div>
         </div>
     )

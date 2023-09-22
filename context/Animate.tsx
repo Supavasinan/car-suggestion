@@ -1,21 +1,34 @@
 'use client'
 import React from 'react'
-import { motion } from 'framer-motion'
+import { Variants, motion } from 'framer-motion'
 
 type Props = {
     children: React.ReactNode
     className?: string
+    variants?: Variants
 }
 
-export function Animate({ children, className, ...props }: Props) {
+const transitionVariants = {
+    initial: {
+        opacity: 0,
+        y: 75
+    },
+    animate: {
+        opacity: 1,
+        y: 0
+    }
+  
+}
+export function Animate({ children, className, variants = transitionVariants }: Props) {
     return (
         <motion.div
-            initial={{ opacity: 0, y: 75 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial="initial"
+            animate="animate"
+            variants={variants}
             className={className}
-            {...props}
         >
             {children}
         </motion.div>
     )
 }
+

@@ -1,4 +1,3 @@
-import { createSuggestionSchema } from "@/validators/suggestion"
 import { z } from "zod"
 
 export type CarBrandProp = {
@@ -18,7 +17,6 @@ export type CarBrandProp = {
 
 }
 
-export type InputCreateSuggestionProp = z.infer<typeof createSuggestionSchema>
 
 export type CountryProp = {
     country: string
@@ -68,7 +66,7 @@ export type CarProps = {
 }
 
 
-export type CarCardProps= {
+export type CarCardProps = {
     model: string;
     make: string;
     mpg: number;
@@ -76,4 +74,9 @@ export type CarCardProps= {
     year: number;
     drive: string;
     cityMPG: number;
-  }
+}
+
+export type ShowMoreProps = {
+    pageNumber: number
+    isNext: boolean
+}

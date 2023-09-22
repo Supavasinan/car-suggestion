@@ -12,7 +12,16 @@ export function Hero() {
                     <Animate>
                         <h1 className='2xl:text-[70px] text-[30px]  md:text-[60px] font-normal font-righteous'>Find, book, rent a car—quick and super easy!</h1>
                     </Animate>
-                    <Animate>
+                    <Animate variants={{
+                        initial: {
+                            opacity: 0,
+                            y: 75
+                        },
+                        animate: {
+                            opacity: 1,
+                            y: 0
+                        }
+                    }}>
                         <SuggestionButton />
                     </Animate>
                 </div>
