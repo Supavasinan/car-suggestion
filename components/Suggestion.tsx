@@ -28,7 +28,7 @@ export async function Suggestion({ searchParams }: { searchParams: FilterProps }
                     <section className='w-full'>
                         <div className='grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 w-full gap-8 pt-14'>
                             {allCars?.map((car) => (
-                                <CarCard car={car} />
+                                <CarCard key={car.model} car={car} />
                             ))}
                         </div>
                         <ShowMore
