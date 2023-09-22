@@ -27,8 +27,8 @@ export async function Suggestion({ searchParams }: { searchParams: FilterProps }
                 {!isDataEmpty ? (
                     <section className='w-full'>
                         <div className='grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 w-full gap-8 pt-14'>
-                            {allCars?.map((car) => (
-                                <CarCard key={car.model} car={car} />
+                            {allCars?.map((car,index) => (
+                                <CarCard key={`vehicle-${index}`} car={car} />
                             ))}
                         </div>
                         <ShowMore
