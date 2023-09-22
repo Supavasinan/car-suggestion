@@ -53,15 +53,12 @@ export function CarDetails({ isOpen, closeModal, car }: CarDetailsProps) {
                                         </div>
 
                                         <div className='flex gap-3'>
-                                            <div className='flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg'>
-                                                <Image src={generateCarImageUrl(car, "29")} alt='car model' fill priority className='object-contain' />
-                                            </div>
-                                            <div className='flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg'>
-                                                <Image src={generateCarImageUrl(car, "33")} alt='car model' fill priority className='object-contain' />
-                                            </div>
-                                            <div className='flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg'>
-                                                <Image src={generateCarImageUrl(car, "13")} alt='car model' fill priority className='object-contain' />
-                                            </div>
+                                            {[29, 33, 13].map((item, index) => (
+                                                <div key={`angle-${index}`} className='flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg'>
+                                                    <Image src={generateCarImageUrl(car, item.toString())} onLoadingComplete={(image)=> image.classList.remove("opacity-0")} alt='car model' fill priority className='object-contain transition-opacity opacity-0 duration-200' />
+                                                </div>
+                                            ))}
+                                        
                                         </div>
                                     </div>
 
