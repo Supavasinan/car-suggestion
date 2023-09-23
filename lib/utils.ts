@@ -85,3 +85,20 @@ export const deleteSearchParams = (type: string) => {
 
   return newPathname;
 };
+
+
+export const capitalizeWords = (str: string) => {
+  // Split the input string into an array of words
+  let words = str.split(' ');
+
+  // Iterate through each word in the array and capitalize the first letter
+  for (let i = 0; i < words.length; i++) {
+    let word = words[i];
+    if (word.length > 0) {
+      words[i] = word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    }
+  }
+
+  // Join the modified words back into a single string
+  return words.join(' ');
+}

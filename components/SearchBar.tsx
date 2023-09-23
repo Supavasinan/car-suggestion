@@ -5,14 +5,21 @@ import { SearchManufacturer } from '@/components/SearchManufacturer'
 import { SearchCarModel } from '@/components/SearchCarModel'
 import { Button } from '@/components/ui/button'
 import { useRouter } from "next/navigation";
+import { SetFilterProp } from '@/types'
+import { capitalizeWords } from '@/lib/utils'
 
 
-export function SearchBar() {
+export function SearchBar({ SetManufacturer, SetModel }: SetFilterProp) {
     const [manufacturer, setManuFacturer] = React.useState<string>("")
     const [model, setModel] = React.useState<string>("");
     const [loading, setLoading] = React.useState<boolean>(false)
-    const router = useRouter();
-    
+    const router = useRouter()
+
+    React.useEffect(() => {
+        setManuFacturer(capitalizeWords(SetManufacturer))
+        setModel(SetModel)
+    }, [])
+
 
     const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -45,7 +52,7 @@ export function SearchBar() {
         // Generate the new pathname with the updated search parameters
         const newPathname = `${window.location.pathname}?${searchParams.toString()}`;
 
-        router.push(newPathname);
+        router.push(newPathname, { scroll: false });
         setLoading(false)
 
     };

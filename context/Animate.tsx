@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import { Variants, motion } from 'framer-motion'
+import { Variants, motion, AnimatePresence } from 'framer-motion'
 
 type Props = {
     children: React.ReactNode
@@ -17,7 +17,7 @@ const transitionVariants = {
         opacity: 1,
         y: 0
     }
-  
+
 }
 export function Animate({ children, className, variants = transitionVariants }: Props) {
     return (
@@ -32,3 +32,13 @@ export function Animate({ children, className, variants = transitionVariants }: 
     )
 }
 
+
+export function AnimatePresenceContext({ children }: { children: React.ReactNode }) {
+    return (
+        <div>
+            <AnimatePresence>
+                {children}
+            </AnimatePresence>
+        </div>
+    )
+}

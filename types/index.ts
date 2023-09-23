@@ -80,3 +80,8 @@ export type ShowMoreProps = {
     pageNumber: number
     isNext: boolean
 }
+
+export type SetFilterProp = {
+    SetManufacturer: string
+    SetModel: string
+}

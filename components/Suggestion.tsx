@@ -5,6 +5,7 @@ import { fetchCars } from "@/lib/utils";
 import { FilterProps } from '@/types';
 import { CarCard } from '@/components/CarCard';
 import { ShowMore } from '@/components/ShowMore'
+import { AnimatePresenceContext } from '@/context/Animate';
 
 
 
@@ -22,12 +23,12 @@ export async function Suggestion({ searchParams }: { searchParams: FilterProps }
         <div className='container' id='Suggestion'>
             <div className='pt-6 pb-10'>
                 <p className='text-2xl font-bold'>Car Catalogue</p>
-                <SearchBar />
+                <SearchBar SetManufacturer={searchParams.manufacturer || ''} SetModel={searchParams.model || ''} />
 
                 {!isDataEmpty ? (
                     <section className='w-full'>
                         <div className='grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 w-full gap-8 pt-14'>
-                            {allCars?.map((car,index) => (
+                            {allCars?.map((car, index) => (
                                 <CarCard key={`vehicle-${index}`} car={car} />
                             ))}
                         </div>

@@ -28,16 +28,14 @@ export function SearchManufacturer({ manufacturer, setManuFacturer }: SearchManu
                         <SiLamborghini />
 
                         {manufacturer
-                            ? manufacturers.find(
-                                (item) => item === manufacturer
-                            )
+                            ? manufacturers.find(item => item === manufacturer) || 'Not found'
                             : "Select Manufacturer"}
 
                     </Button>
 
                 </PopoverTrigger>
-                <PopoverContent className="w-[400px] p-0 ">
-                    <Command>
+                <PopoverContent className="w-[400px] p-0 " >
+                    <Command >
                         <CommandInput placeholder="Search manufacturer..." />
                         <CommandEmpty>No manufacturer found.</CommandEmpty>
                         <CommandGroup className='overflow-y-scroll max-h-[300px]'>
