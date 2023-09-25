@@ -2,7 +2,7 @@
 import React from 'react'
 import { SearchBar } from '@/components/SearchBar'
 import { fetchCars } from "@/lib/utils";
-import { FilterProps } from '@/types';
+import { CarProps, FilterProps } from '@/types';
 import { CarCard } from '@/components/CarCard';
 import { ShowMore } from '@/components/ShowMore'
 import { AnimatePresenceContext } from '@/context/Animate';
@@ -28,8 +28,8 @@ export async function Suggestion({ searchParams }: { searchParams: FilterProps }
                 {!isDataEmpty ? (
                     <section className='w-full'>
                         <div className='grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 w-full gap-8 pt-14'>
-                            {allCars?.map((car, index) => (
-                                <CarCard key={`vehicle-${index}`} car={car} />
+                            {allCars?.map((car: CarProps, index) => (
+                                <CarCard key={`vehicle-${index}`} car={car} index={index} />
                             ))}
                         </div>
                         <ShowMore

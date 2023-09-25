@@ -41,7 +41,7 @@ export function SearchSalary({ salary, setSalary }: SalaryProp) {
                                 <CommandItem
                                     value={item}
                                     key={item}
-                                    onSelect={() => {
+                                    onSelect={(e) => {
                                         setSalary(item)
                                     }}
                                 >
