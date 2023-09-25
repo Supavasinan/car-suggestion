@@ -1,5 +1,3 @@
-import { z } from "zod"
-
 export type CarBrandProp = {
     item: {
         name: string,
@@ -14,19 +12,9 @@ export type CarBrandProp = {
             localOriginal: string
         }
     }
-
 }
 
 
-export type CountryProp = {
-    country: string
-    setCountry: (country: string) => void;
-}
-
-export type SalaryProp = {
-    salary: string
-    setSalary: (salary: string) => void;
-}
 
 
 export type CarModelProp = {
@@ -39,8 +27,6 @@ export type SearchManuFacturerProps = {
     setManuFacturer: (manufacturer: string) => void;
 }
 
-
-
 export type FilterProps = {
     manufacturer?: string;
     year?: number;
@@ -48,7 +34,6 @@ export type FilterProps = {
     limit?: number;
     fuel?: string;
 }
-
 
 export type CarProps = {
     city_mpg: number;
@@ -65,7 +50,6 @@ export type CarProps = {
     year: number;
     message?: string
 }
-
 
 export type CarCardProps = {
     model: string;

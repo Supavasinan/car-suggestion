@@ -3,12 +3,12 @@ import React from 'react'
 import { SearchBar } from '@/components/SearchBar'
 import { fetchCars } from "@/lib/utils";
 import { CarProps, FilterProps } from '@/types';
-import { CarCard } from '@/components/CarCard';
+import { CarCard } from './CarCard';
 import { ShowMore } from '@/components/ShowMore'
 
 
 
-export async function Suggestion({ searchParams }: { searchParams: FilterProps }) {
+export async function Suggestion(searchParams: FilterProps) {
     const allCars = await fetchCars({
         manufacturer: searchParams.manufacturer || '',
         year: searchParams.year || 2023,
@@ -16,7 +16,7 @@ export async function Suggestion({ searchParams }: { searchParams: FilterProps }
         limit: searchParams.limit || 10,
         model: searchParams.model || ''
     })
-    const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
+    const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars
     return (
         <div className='container' id='Suggestion'>
             <div className='pt-6 pb-10'>
