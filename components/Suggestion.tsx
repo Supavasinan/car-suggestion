@@ -5,7 +5,6 @@ import { fetchCars } from "@/lib/utils";
 import { CarProps, FilterProps } from '@/types';
 import { CarCard } from '@/components/CarCard';
 import { ShowMore } from '@/components/ShowMore'
-import { AnimatePresenceContext } from '@/context/Animate';
 
 
 
@@ -17,7 +16,6 @@ export async function Suggestion({ searchParams }: { searchParams: FilterProps }
         limit: searchParams.limit || 10,
         model: searchParams.model || ''
     })
-
     const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
     return (
         <div className='container' id='Suggestion'>
@@ -28,7 +26,7 @@ export async function Suggestion({ searchParams }: { searchParams: FilterProps }
                 {!isDataEmpty ? (
                     <section className='w-full'>
                         <div className='grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 w-full gap-8 pt-14'>
-                            {allCars?.map((car: CarProps, index) => (
+                            {allCars?.map((car: CarProps, index: number) => (
                                 <CarCard key={`vehicle-${index}`} car={car} index={index} />
                             ))}
                         </div>

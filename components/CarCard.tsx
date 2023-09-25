@@ -21,7 +21,7 @@ export function CarCard({ car, index }: { car: CarProps, index: number }) {
 
                 initial={{ opacity: 0, translateX: -50, translateY: -50 }}
                 whileInView={{ opacity: 1, translateX: 0, translateY: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.3 }}
+                transition={{ duration: 0.3, delay: index * 0.15 }}
                 viewport={{ once: true }}
                 className='p-6 group'>
                 <h1 className='font-righteous text-2xl capitalize'>{make} {model}</h1>
@@ -31,7 +31,7 @@ export function CarCard({ car, index }: { car: CarProps, index: number }) {
                     <span className='self-end text-[14px] leading-[17px] font-medium'>/day</span>
                 </p>
                 <div className='relative w-full h-40 my-3 object-contain'>
-                    <Image src={generateCarImageUrl(car)} onLoadingComplete={(image) => image.classList.remove("opacity-0")} alt='car' fill priority className='object-contain transition-opacity opacity-0 duration-200' />
+                    <Image src={generateCarImageUrl(car)} onLoadingComplete={(image) => image.classList.remove("opacity-0")} alt='car' fill={true} priority className='object-contain transition-opacity opacity-0 duration-200' />
                 </div>
                 <div className='grid grid-cols-3  group-hover:hidden'>
                     <div className='flex items-center justify-center gap-2 flex-col text-[14px] leading-[17px]'>

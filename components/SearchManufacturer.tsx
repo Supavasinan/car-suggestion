@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, } from "@/components/ui/command"
 import { manufacturers } from '@/constants'
 import { cn } from '@/lib/utils'
-import { Check, ChevronsUpDown } from 'lucide-react'
+import { Check } from 'lucide-react'
 import { SiLamborghini } from 'react-icons/si';
 
 
