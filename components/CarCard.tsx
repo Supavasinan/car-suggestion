@@ -10,15 +10,16 @@ import { motion } from 'framer-motion';
 
 
 export function CarCard({ car, index }: { car: CarProps; index: number; }) {
+   
     const { city_mpg, year, make, model, transmission, drive } = car;
     const carRent = calculateCarRent(city_mpg, year);
     const [isOpen, setIsOpen] = React.useState(false);
+
     return (
         <motion.div
 
             initial={{ opacity: 0, translateX: -50, translateY: -50 }}
             whileInView={{ opacity: 1, translateX: 0, translateY: 0 }}
-            transition={{ duration: 0.3, delay: index * 0.15 }}
             viewport={{ once: true }}
             className='p-6 group'>
             <h1 className='font-righteous text-2xl capitalize'>{make} {model}</h1>
@@ -55,5 +56,6 @@ export function CarCard({ car, index }: { car: CarProps; index: number; }) {
 
             <CarDetails isOpen={isOpen} closeModal={() => setIsOpen(false)} car={car} />
         </motion.div>
+
     );
 }
