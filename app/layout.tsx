@@ -5,7 +5,7 @@ import { ThemeProvider } from '@/components/theme-provider'
 import { cn } from '@/lib/utils'
 import type { Metadata } from 'next'
 import { Righteous } from 'next/font/google'
-
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -28,6 +28,7 @@ export default function RootLayout({
           <Navbar />
           <main className='flex-1'>
             {children}
+            <SpeedInsights />
           </main>
           <Footer />
         </ThemeProvider>
