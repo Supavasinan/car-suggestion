@@ -27,7 +27,7 @@ export function Hero() {
                 </div>
                 <div className='flex-[1.3] flex items-center justify-center'>
                     <Animate>
-                        <Image src="/images/car.png" alt='car' width={700} height={700} />
+                        <Image src="/images/car.png" alt='car' width={700} height={700} priority />
                     </Animate>
                 </div>
 

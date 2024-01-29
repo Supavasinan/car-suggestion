@@ -29,7 +29,7 @@ export function CarCard({ car, index }: { car: CarProps; index: number; }) {
                 <span className='self-end text-[14px] leading-[17px] font-medium'>/day</span>
             </p>
             <div className='relative w-full h-40 my-3 object-contain'>
-                <Image src={generateCarImageUrl(car)} onLoadingComplete={(image) => image.classList.remove("opacity-0")} alt='car' fill={true} priority className='object-contain transition-opacity opacity-0 duration-200' />
+                <Image src={generateCarImageUrl(car)} onLoadingComplete={(image) => image.classList.remove("opacity-0")} alt='car' fill={true} className='object-contain transition-opacity opacity-0 duration-200' sizes="(min-width: 1560px) 262px, (min-width: 1520px) calc(-570vw + 9040px), (min-width: 1280px) calc(18.18vw + 103px), (min-width: 780px) calc(50vw - 96px), calc(100vw - 112px)"/>
             </div>
             <div className='grid grid-cols-3  group-hover:hidden'>
                 <div className='flex items-center justify-center gap-2 flex-col text-[14px] leading-[17px]'>
